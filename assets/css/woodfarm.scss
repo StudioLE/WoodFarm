@@ -1,0 +1,27 @@
+$slate: #556270;
+$lighter-slate: #607D87;
+$swim: #4ECDC4;
+$fly: #FF6B6B;
+$stable: #C7F464;
+
+body {
+  background: $slate;
+  color: #fff;
+}
+
+.lobster {
+	font-family: 'Lobster Two', cursive;
+}
+
+.vollkorn {
+	font-family: 'Vollkorn', serif;
+}
+
+.fredericka {
+	font-family: 'Fredericka the Great', cursive;
+}
+
+object, img, svg {
+	fill: $lighter-slate;
+	background: red;
+}
