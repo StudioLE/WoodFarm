@@ -1,16 +1,51 @@
+
+@import "../bower_components/bootstrap/less/mixins.less";
+@import "../bower_components/bootstrap/less/variables.less";
+
+@farm: #ba2626; // Dark Red
+@stables: #93c54b; // Green
+@pool: #29abe0; // Blue
+// @airfield: #d9534f; // Red
+@airfield: #f47c3c; // Orange
+// #325d88 Navy
+
+
 body {
   background: #191919;
 }
 
-html, .full, .pane {
-  min-height: 100%;
+html, body, .full, .pane {
+  height: 100%;
+}
+
+::selection {
+  background: rgba(227, 80, 80, 0.5);
+  color: #fff;
 }
 
 .pane {
-  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  border-left: 4px solid #000;
+  .make-xs-column(3);
+}
+
+.pane.inactive {
+  .make-xs-column(2);
+}
+
+.pane.active {
+  .make-xs-column(5);
+}
+
+.pane.farm {
+  border: none;
+  .make-xs-column(3);
+}
+
+.pane.farm.active {
+  .make-xs-column(6);
 }
 
 .pane::after {
@@ -47,6 +82,7 @@ html, .full, .pane {
 @media (max-width: 768px) {
   .pane {
     height: auto;
+    padding: 100px 0;
   }
 
   .title {
@@ -56,7 +92,7 @@ html, .full, .pane {
 
 h1, h2, h3, .title {
   margin: 0 0 0 0;
-  color: #fff;
+  // color: #fff;
   font-size: 36px;
   font-weight: 500;
   letter-spacing: 1px;
@@ -67,14 +103,51 @@ h1, h2, h3, .title {
 }
 
 h1 {
-  margin-top: 15px;
+  // margin-top: 15px;
 }
 
-.title {
+a.title {
   margin: 300px -15px 0 -15px;
   padding: 30px 0;
-  background: rgba(0, 0, 0, 0.2);
+  display: block;
+  background: fade(#000, 20%);
   overflow: hidden;
+  color: fade(#fff, 60%);
+}
+
+a.title {
+  text-decoration: none;
+}
+
+.pane.active .title, a:hover.title {
+  background: fade(#000, 35%);
+  color: #fff;
+}
+
+// .pane.active .title, a:hover.title {
+//   background: fade(#000, 35%);
+// }
+
+// .pane.active .title, a:hover.title {
+//   h1, h2, p {
+//     color: #fff;
+//   }
+// }
+
+.pane.farm.active .title h1, .farm a:hover.title h1 {
+  color: @farm;
+}
+
+.pane.stables.active .title h2, .stables a:hover.title h2 {
+  color: @stables;
+}
+
+.pane.pool.active .title h2, .pool a:hover.title h2 {
+  color: @pool;
+}
+
+.pane.airfield.active .title h2, .airfield a:hover.title h2 {
+  color: @airfield;
 }
 
 .title p {
@@ -85,6 +158,14 @@ h1 {
 
 .farm .title p {
   letter-spacing: 0;
+}
+
+.farm a.title .about {
+  visibility: hidden;
+}
+
+.farm a:hover.title .about {
+  visibility: visible;
 }
 
 .title .at {
@@ -100,10 +181,6 @@ h1 {
     font-size: 48px;
     // letter-spacing: 3px;
     line-height: 36px;
-  }
-
-  h1 {
-    margin-top: 15px;
   }
 
   .title {

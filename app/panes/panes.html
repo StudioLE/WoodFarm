@@ -1,0 +1,14 @@
+      <div class="pane farm" ng-class="paneClass('#/about')">
+        <a class="title" href="#/about">
+          <p class="about">About</p>
+          <h1>Wood Farm</h1>
+          <p>Stables · <span class="hidden-sm hidden-md">Swimming</span> Pool · Airfield</p>
+        </a>
+      </div>
+      <div ng-repeat="pane in panes" class="pane {{pane.class}}" ng-class="paneClass(pane.url)">
+        <a class="title" href="{{pane.url}}">
+          <p>The</p>
+          <h2 ng-bind-html="pane.title"></h2>
+          <p><span class="at">at</span>Wood Farm</p>
+        </a>
+      </div>
