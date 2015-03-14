@@ -17,7 +17,7 @@
         <div class="row body">
           <div class="col-xs-3">
           <ul class="nav nav-stacked">
-            <li><a href="{{pane.url}}">Intro</a></li>
+            <li ng-repeat="section in sections" ng-class="sectionClass(pane.url, section.url)"><a href="{{pane.url}}{{section.url}}">{{section.title}}</a></li>
           </ul>
           </div>
           <div class="col-xs-8">

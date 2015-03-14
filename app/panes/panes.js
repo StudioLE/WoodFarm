@@ -43,6 +43,27 @@ angular.module('myApp.panes', ['ngRoute', 'ngSanitize', 'uiGmapgoogle-maps'])
     }
   }
 
+  $scope.sections = [{
+    url: '',
+    title: 'Intro'
+  }, {
+    url: '/enquiries',
+    title: 'Enquiries'
+  }]
+
+  $scope.sectionClass = function(pane, section) {
+    console.log('href: ' + pane + section)
+    console.log('current: ' + '#' + $location.path())
+
+    // If section matches the current URL
+    if('#' + $location.path() === pane + section) {
+      return 'active'
+    }
+    else {
+      return ''
+    }
+  }
+
   $scope.partial = 'panes/partials/' + $routeParams.pane + '-' + $routeParams.section + '.html'
 
 }]);
