@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.panes', ['ngRoute', 'ngSanitize'])
+angular.module('myApp.panes', ['ngRoute', 'ngSanitize', 'uiGmapgoogle-maps'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/:slug?', {
+  $routeProvider.when('/:pane?/:section?', {
     templateUrl: 'panes/panes.html',
     controller: 'PanesCtrl'
   });
 }])
 
-.controller('PanesCtrl', ['$scope', '$location', function($scope, $location) {
+.controller('PanesCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
 
   $scope.panes = [{
     url: '#/stables',
@@ -26,21 +26,23 @@ angular.module('myApp.panes', ['ngRoute', 'ngSanitize'])
   }]
 
   $scope.paneClass = function(href) {
-    console.log($location.path())
-    console.log(['/', '/about', '/stables', '/swimming-pool', '/airfield'].indexOf($location.path()))
+    // If current URL is home
     if($location.path() === '/') {
       return ''
     }
-    else if(href === '#' + $location.path()) {
+    // If pane matches the current URL
+    else if(href === '#/' + $location.path().split('/')[1]) {
       return 'active'
     }
-    // If unknown
-    else if(['/', '/about', '/stables', '/swimming-pool', '/airfield'].indexOf($location.path()) === -1) {
+    // If current URL is unknown
+    else if(['', 'about', 'stables', 'swimming-pool', 'airfield'].indexOf($location.path().split('/')[1]) === -1) {
       return ''
     }
     else {
       return 'inactive'
     }
   }
+
+  $scope.partial = 'panes/partials/' + $routeParams.pane + '-' + $routeParams.section + '.html'
 
 }]);
