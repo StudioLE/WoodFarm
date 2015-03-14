@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.panes', ['ngRoute', 'ngSanitize', 'uiGmapgoogle-maps'])
+angular.module('myApp.panes', ['ngRoute', 'ngSanitize', 'uiGmapgoogle-maps', 'angulartics', 'angulartics.google.analytics'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/:pane?/:section?', {
