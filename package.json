@@ -1,7 +1,7 @@
 {
   "name": "WoodFarm",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Wood Farm website built with AngularJS",
   "repository": "https://github.com/StudioLE/WoodFarm",
   "license": "",
