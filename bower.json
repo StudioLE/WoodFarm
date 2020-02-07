@@ -15,7 +15,6 @@
     "less": "~2.5.3",
     "jquery": "~2.1.4",
     "angular-sanitize": "~1.4.0",
-    "bootstrap-bower": "~3.0.0",
     "lodash": "~3.10.1",
     "js-yaml": "~3.4.5",
     "angular-google-maps": "~2.2.1",
