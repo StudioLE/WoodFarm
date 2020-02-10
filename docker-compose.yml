@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   nginx:
-    container_name: ${APPNAME}
+    container_name: woodfarm
     image: nginx:1.17.8-alpine
     volumes:
       - ./build:/usr/share/nginx/html
