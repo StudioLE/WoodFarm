@@ -16,8 +16,8 @@ npm-debug.log*
 node_modules/
 
 # Gulp
-hugo/static/assets/
-hugo/resources/assets/
+static/assets/
+resources/assets/
 
 # Hugo
-hugo/public/
+public/
