@@ -1,0 +1,39 @@
+language: node_js
+node_js: stable
+dist: trusty
+sudo: required
+addons:
+  firefox: latest
+  chrome: stable
+  apt:
+    packages:
+     - tree
+install:
+  - curl -LO https://github.com/gohugoio/hugo/releases/download/v0.68.0/hugo_0.68.0_Linux-64bit.deb
+  - sudo dpkg -i hugo_0.68.0_Linux-64bit.deb
+  - npm install
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+  - fluxbox >/dev/null 2>&1 &
+script:
+  - npm run build
+  - npm run test
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    local_dir: public
+    github_token: $GITHUB_TOKEN
+    keep_history: true
+    fqdn: beta.woodfarm.org
+    on:
+      branch: develop
+  - provider: script
+    script: npm run deploy
+    skip_cleanup: true
+    keep_history: true
+    on:
+      branch: master
+after_script:
+  - tree public/
