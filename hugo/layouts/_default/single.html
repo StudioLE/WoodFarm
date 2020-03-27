@@ -1,29 +1,43 @@
 {{ define "main" }}
-      <div class="pane farm" ng-class="paneClass('#/about')">
-        <a class="title" href="#/about">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+      <div class="pane {{ with .Page }} {{.Section}} {{ if eq $currentPage.Section .Section }}active{{else}}{{ if ne $currentPage.Name "Home" }} inactive{{ end }}{{ end }}{{ end }}">
+        <a class="title" href="{{.URL}}">
+          {{ if eq .Name "About" }}
           <p class="about">Find Us</p>
           <h1>Wood Farm</h1>
           <p>Stables · <span class="hidden-sm hidden-md">Swimming</span> Pool · Airfield</p>
-        </a>
-        <div class="row body">
-          <ng-include src="partial"></ng-include>
-        </div>
-      </div>
-      <div ng-repeat="pane in panes" class="pane {{.Params.class}}">
-        <a class="title" href="{{.Params.url}}">
+          {{ else if eq .Name "Swimming Pool" }}
           <p>The</p>
-          <h2>{{.Title}}</h2>
+          <h2><span class="hidden-sm hidden-md">Swimming</span> Pool</h2>
           <p><span class="at">at</span>Wood Farm</p>
+          {{ else }}
+          <p>The</p>
+          <h2>{{.Name}}</h2>
+          <p><span class="at">at</span>Wood Farm</p>
+          {{ end }}
         </a>
         <div class="row body">
           <div class="col-xs-3">
           <ul class="nav nav-stacked">
-            <li ng-repeat="section in sections" ng-class="sectionClass(pane.url, section.url)"><a href="{{.RelPermalink}}">{{.Title}}</a></li>
+
+            <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"><a href="{{.URL}}">Intro</a></li>
+            {{ range .Children }}
+            <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"><a href="{{.URL}}">{{.Name}}</a></li>
+            {{ end }}
           </ul>
           </div>
           <div class="col-xs-8">
-            <ng-include src="partial"></ng-include>
+            {{ $currentPage.Content }}
           </div>
+          {{ if eq .Name "About" }}
+          <div class="col-xs-12">
+            <ui-gmap-google-map center="[1.192094, 52.670772]" zoom="10">
+              <ui-gmap-marker idKey="'wood_farm'" coords='[1.190914, 52.704629]'></ui-gmap-marker>
+            </ui-gmap-google-map>
+          </div>
+          {{ end }}
         </div>
       </div>
+      {{ end }}
 {{ end }}

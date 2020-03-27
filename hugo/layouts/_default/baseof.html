@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Stables · Swimming Pool · Airfield · Wood Farm, Felthorpe, Norwich</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,12 +48,8 @@
 </head>
 <body class="tk-minion-pro">
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
   <div class="container-fluid full">
-    <div class="row full" ng-view>
+    <div class="row full">
       {{ block "main" . }}
       <!-- The part of the page that begins to differ between templates -->
       {{ end }}
@@ -70,7 +62,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-4718623-16', {'siteSpeedSampleRate': 100});
-//ga('send', 'pageview');
+ga('send', 'pageview');
 </script>
 
 {{/* Vendor JS */}}

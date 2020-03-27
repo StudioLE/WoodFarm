@@ -41,12 +41,12 @@ html, body, .full, .pane {
   .make-xs-column(5);
 }
 
-.pane.farm {
+.pane.about {
   border: none;
   .make-xs-column(3);
 }
 
-.pane.farm.active {
+.pane.about.active {
   .make-xs-column(6);
 }
 
@@ -64,7 +64,7 @@ html, body, .full, .pane {
   z-index: -1;
 }
 
-.pane.farm::after {
+.pane.about::after {
   background-image: url(/img/1200/wood-farm.jpg);
   background-position: center right;
 }
@@ -73,7 +73,7 @@ html, body, .full, .pane {
   background-image: url(/img/1200/wood-farm-stables.jpg)
 }
 
-.pane.pool::after {
+.pane.swimming-pool::after {
   background-image: url(/img/1200/wood-farm-swimming-pool.jpg)
 }
 
@@ -136,7 +136,7 @@ a.title {
 //   }
 // }
 
-.pane.farm.active .title h1, .farm a:hover.title h1 {
+.pane.about.active .title h1, .about a:hover.title h1 {
   color: @farm;
 }
 
@@ -144,7 +144,7 @@ a.title {
   color: @stables;
 }
 
-.pane.pool.active .title h2, .pool a:hover.title h2 {
+.pane.swimming-pool.active .title h2, .swimming-pool a:hover.title h2 {
   color: @pool;
 }
 
@@ -158,15 +158,15 @@ a.title {
   line-height: 14px;
 }
 
-.farm .title p {
+.about .title p {
   letter-spacing: 0;
 }
 
-.farm a.title .about {
+.about a.title .about {
   visibility: hidden;
 }
 
-.farm a:hover.title .about {
+.about a:hover.title .about {
   visibility: visible;
 }
 
@@ -195,7 +195,7 @@ a.title {
     line-height: 15px;
   }
 
-  .farm .title p {
+  .about .title p {
     // letter-spacing: 1.5px;
   }
 
@@ -246,7 +246,7 @@ a.title {
   }
 }
 
-.farm .body {}
+.about .body {}
 
 .angular-google-map-container {
   margin: 20px -15px;
