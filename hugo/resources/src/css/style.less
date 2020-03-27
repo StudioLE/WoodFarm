@@ -1,5 +1,5 @@
-@import "../bower_components/bootstrap/less/mixins.less";
-@import "../bower_components/bootstrap/less/variables.less";
+@import "/assets/bootstrap/less/mixins.less";
+@import "/assets/bootstrap/less/variables.less";
 
 @farm: #ba2626; // Dark Red
 @stables: #93c54b; // Green
@@ -52,7 +52,7 @@ html, body, .full, .pane {
 
 .pane::after {
   content: "";
-  background-image: url(../img/1200/wood-farm.jpg);
+  background-image: url(/img/1200/wood-farm.jpg);
   background-position: center center;
   background-size: cover;
   opacity: 0.5;
@@ -65,20 +65,20 @@ html, body, .full, .pane {
 }
 
 .pane.farm::after {
-  background-image: url(../img/1200/wood-farm.jpg);
+  background-image: url(/img/1200/wood-farm.jpg);
   background-position: center right;
 }
 
 .pane.stables::after {
-  background-image: url(../img/1200/wood-farm-stables.jpg)
+  background-image: url(/img/1200/wood-farm-stables.jpg)
 }
 
 .pane.pool::after {
-  background-image: url(../img/1200/wood-farm-swimming-pool.jpg)
+  background-image: url(/img/1200/wood-farm-swimming-pool.jpg)
 }
 
 .pane.airfield::after {
-  background-image: url(../img/1200/wood-farm-airfield.jpg)
+  background-image: url(/img/1200/wood-farm-airfield.jpg)
 }
 
 @media (max-width: 768px) {

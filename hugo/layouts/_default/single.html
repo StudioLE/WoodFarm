@@ -1,3 +1,4 @@
+{{ define "main" }}
       <div class="pane farm" ng-class="paneClass('#/about')">
         <a class="title" href="#/about">
           <p class="about">Find Us</p>
@@ -8,16 +9,16 @@
           <ng-include src="partial"></ng-include>
         </div>
       </div>
-      <div ng-repeat="pane in panes" class="pane {{pane.class}}" ng-class="paneClass(pane.url)">
-        <a class="title" href="{{pane.url}}">
+      <div ng-repeat="pane in panes" class="pane {{.Params.class}}">
+        <a class="title" href="{{.Params.url}}">
           <p>The</p>
-          <h2 ng-bind-html="pane.title"></h2>
+          <h2>{{.Title}}</h2>
           <p><span class="at">at</span>Wood Farm</p>
         </a>
         <div class="row body">
           <div class="col-xs-3">
           <ul class="nav nav-stacked">
-            <li ng-repeat="section in sections" ng-class="sectionClass(pane.url, section.url)"><a href="{{pane.url}}{{section.url}}">{{section.title}}</a></li>
+            <li ng-repeat="section in sections" ng-class="sectionClass(pane.url, section.url)"><a href="{{.RelPermalink}}">{{.Title}}</a></li>
           </ul>
           </div>
           <div class="col-xs-8">
@@ -25,3 +26,4 @@
           </div>
         </div>
       </div>
+{{ end }}

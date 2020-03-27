@@ -9,14 +9,44 @@
 <title>Stables · Swimming Pool · Airfield · Wood Farm, Felthorpe, Norwich</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- build:vendor-css -->
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-<!-- endbuild -->
-<!-- build:css -->
-<link rel="stylesheet/less" href="css/style.less">
-<script src="bower_components/less/dist/less.min.js" data-async="true" data-log-level="0"></script>
-<!-- endbuild -->
+
+{{/* Vendor CSS */}}
+{{- $vendorCSS := slice (resources.Get "assets/vendor/bootstrap.min.css") (resources.Get "assets/vendor/font-awesome.min.css") -}}
+{{/* App LESS */}}
+{{- $appLESS := slice (resources.Get "src/css/style.less") -}}
+{{/* App CSS */}}
+{{- $appCSS := slice (resources.Get "assets/css/app.css") -}}
+{{/* Vendor JS */}}
+{{- $vendorJS := slice (resources.Get "assets/vendor/jquery.min.js") (resources.Get "assets/vendor/bootstrap.min.js") -}}
+{{/* App JS */}}
+{{- $appJS := slice (resources.Get "src/js/app.js") -}}
+
+
+{{/* Vendor CSS */}}
+{{- if eq hugo.Environment "development" -}}
+{{ range $vendorCSS }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end -}}
+{{ else }}
+{{- $vendorCSS := $vendorCSS | resources.Concat "assets/css/vendor.css" -}}
+{{ $fingerprint :=  $vendorCSS | resources.Fingerprint "md5" }}
+{{ $hash := slicestr $fingerprint.Data.Integrity 4 11 }}
+<link rel="stylesheet" href="{{ $vendorCSS.RelPermalink }}?{{ $hash }}">
+{{- end -}}
+
+{{/* App CSS / LESS */}}
+{{ if eq hugo.Environment "development" -}}
+{{ range $appLESS }}
+<link rel="stylesheet/less" href="{{ .RelPermalink }}">
+{{- end -}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.2/less.min.js"></script>
+{{ else }}
+{{/* NOTE: LESS MUST BE COMPILED SEPARATELY */}}
+{{ $appCSS := $appCSS | resources.Concat "assets/css/app.css" }}
+{{ $fingerprint :=  $appCSS | resources.Fingerprint "md5" }}
+{{ $hash := slicestr $fingerprint.Data.Integrity 4 11 }}
+<link rel="stylesheet" href="{{ $appCSS.RelPermalink }}?{{ $hash }}">
+{{ end -}}
 <script src="//use.typekit.net/ohq2urr.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
 </head>
@@ -28,6 +58,9 @@
 
   <div class="container-fluid full">
     <div class="row full" ng-view>
+      {{ block "main" . }}
+      <!-- The part of the page that begins to differ between templates -->
+      {{ end }}
     </div>
   </div>
 <script>
@@ -39,24 +72,31 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-4718623-16', {'siteSpeedSampleRate': 100});
 //ga('send', 'pageview');
 </script>
-<!-- build:vendor-js -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/lodash/lodash.min.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-route/angular-route.min.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="bower_components/js-yaml/dist/js-yaml.min.js"></script>
-<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
-<script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
-<script src="bower_components/angulartics/dist/angulartics.min.js"></script>
-<script src="bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js"></script>
-<!-- endbuild -->
+
+{{/* Vendor JS */}}
+{{- if eq hugo.Environment "development" -}}
+{{ range $vendorJS }}
+<script src="{{ .RelPermalink }}"></script>
+{{- end -}}
+{{ else }}
+{{ $vendorJS := $vendorJS | resources.Concat "assets/js/vendor.js" }}
+{{ $fingerprint :=  $vendorJS | resources.Fingerprint "md5" }}
+{{ $hash := slicestr $fingerprint.Data.Integrity 4 11 }}
+<script src="{{ $vendorJS.RelPermalink }}?{{ $hash }}"></script>
+{{- end -}}
+
 <script src="//maps.googleapis.com/maps/api/js"></script>
-<!-- build:js -->
-<script src="app.js"></script>
-<script src="controllers/panes.js"></script>
-<!-- endbuild -->
+
+{{/* App JS */}}
+{{ if eq hugo.Environment "development" -}}
+{{ range $appJS }}
+<script src="{{ .RelPermalink }}"></script>
+{{- end -}}
+{{ else }}
+{{ $appJS := $appJS | resources.Concat "assets/js/app.js" }}
+{{ $fingerprint :=  $appJS | resources.Fingerprint "md5" }}
+{{ $hash := slicestr $fingerprint.Data.Integrity 4 11 }}
+<script src="{{ $appJS.RelPermalink }}?{{ $hash }}"></script>
+{{- end }}
 </body>
 </html>
