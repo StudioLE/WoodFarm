@@ -2,17 +2,16 @@
   "name": "WoodFarm",
   "private": true,
   "version": "0.0.1",
-  "description": "Wood Farm website built with AngularJS",
+  "description": "Wood Farm website built with Hugo",
   "repository": "https://github.com/StudioLE/WoodFarm",
   "license": "",
-  "devDependencies": {
-    "http-server": "^0.6.1",
-    "shelljs": "^0.2.6"
-  },
   "scripts": {
-    "prestart": "npm install",
-    "start": "node cli.js server",
-    "preupdate-webdriver": "npm install"
+    "start": "npm run build",
+    "server": "hugo server",
+    "prebuild": "npm install",
+    "build": "gulp build && hugo --environment production --minify",
+    "deploy-dry": "hugo deploy --dryRun",
+    "deploy": "hugo deploy"
   },
   "dependencies": {
     "gulp": "^4.0.2",
