@@ -30,24 +30,24 @@ html, body, .full, .pane {
   background-size: cover;
   position: relative;
   border-left: 4px solid #000;
-  .make-xs-column(3);
+  .make-sm-column(3);
 }
 
 .pane.inactive {
-  .make-xs-column(2);
+  .make-sm-column(2);
 }
 
 .pane.active {
-  .make-xs-column(5);
+  .make-sm-column(5);
 }
 
 .pane.about {
   border: none;
-  .make-xs-column(3);
+  .make-sm-column(3);
 }
 
 .pane.about.active {
-  .make-xs-column(6);
+  .make-sm-column(6);
 }
 
 .pane::after {
@@ -84,7 +84,9 @@ html, body, .full, .pane {
 @media (max-width: 768px) {
   .pane {
     height: auto;
-    padding: 100px 0;
+    padding: 0 0;
+    border-left: none;
+    border-top: 4px solid #000;
   }
 
   .title {
