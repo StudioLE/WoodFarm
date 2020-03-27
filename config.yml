@@ -8,7 +8,7 @@ deployment:
   targets:
     - name: woodfarm.org
       URL: s3://woodfarm
-      cloudFrontDistributionID: 
+      cloudFrontDistributionID: E3QB1XN6DJPWAT
   matchers:
     - pattern: "^.+\\.(js|css|svg|ttf|woff|woff2)$"
       cacheControl: "max-age=2592000, no-transform, public"

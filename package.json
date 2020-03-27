@@ -7,11 +7,13 @@
   "license": "",
   "scripts": {
     "start": "npm run build",
+    "test": "echo \"No test configured...\"",
     "server": "hugo server",
     "prebuild": "npm install",
     "build": "gulp build && hugo --environment production --minify",
     "deploy-dry": "hugo deploy --dryRun",
-    "deploy": "hugo deploy"
+    "deploy": "hugo deploy",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E3QB1XN6DJPWAT --paths \"/*\""
   },
   "dependencies": {
     "gulp": "^4.0.2",
