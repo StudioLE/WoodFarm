@@ -2,6 +2,10 @@ baseURL: https://woodfarm.org/
 languageCode: en-gb
 title: Wood Farm, Felthorpe, Norwich
 disableKinds: ["taxonomy", "taxonomyTerm", "RSS"]
+params:
+  homeTitle: Stables · Swimming Pool · Airfield · Wood Farm, Felthorpe, Norwich
+  description: Wood Farm, Felthorpe, Norwich 
+  keywords: wood, farm, stables, swimming, pool, airfield, felthorpe, norwich
 assetDir: resources
 enableGitInfo: true
 deployment:

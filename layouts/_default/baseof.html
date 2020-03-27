@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>{{ if .IsHome }}{{ .Site.Params.homeTitle }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+{{ with .GitInfo -}}
+<meta name="content-date" content="{{ .AuthorDate }}">
+<meta name="content-hash" content="{{ .Hash }}">
+{{- end }}
 <meta charset="utf-8">
-<title>Stables · Swimming Pool · Airfield · Wood Farm, Felthorpe, Norwich</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{{ .Site.Params.description }}">
+<meta name="keywords" content="{{ .Site.Params.keywords }}">
+<meta name="author" content="Laurence Elsdon">
+{{ hugo.Generator }}
+{{ if (and (isset .Params "robots") (eq .Params.robots false)) -}}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
 
 {{/* Vendor CSS */}}
 {{- $vendorCSS := slice (resources.Get "assets/vendor/bootstrap.min.css") (resources.Get "assets/vendor/font-awesome.min.css") -}}
