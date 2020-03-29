@@ -1,5 +1,7 @@
-html, body, .full {
+@media (min-width: 768px) {
+ html, body, .full {
   height: 100%;
+ }
 }
 
 body {
@@ -12,9 +14,18 @@ body {
 }
 
 .pane {
+  padding: 0;
   background-repeat: no-repeat;
   background-size: cover;
-  border-left: 4px solid #000;
+  border-left: none;
+  border-top: 4px solid #000;
+}
+
+@media (min-width: 768px) {
+  .pane {
+    border-left: 4px solid #000;
+    border-top: none;
+  }
 }
 
 .pane.about {
@@ -52,23 +63,6 @@ body {
   background-image: url(/img/1200/wood-farm-airfield.jpg)
 }
 
-@media (max-width: 768px) {
-  html, body, .full {
-    height: auto;
-  }
-  
-  .pane {
-    height: auto;
-    padding: 0 0;
-    border-left: none;
-    border-top: 4px solid #000;
-  }
-
-  .title {
-    margin-top: 0 !important;
-  }
-}
-
 h1, h2, h3, .title {
   margin: 0;
   font-size: 36px;
@@ -81,16 +75,18 @@ h1, h2, h3, .title {
 }
 
 a.title {
-  margin-top: 300px;
   padding: 30px 0;
   display: block;
-  background: rgba(0,0,0,.2);
   overflow: hidden;
+  background: rgba(0,0,0,.2);
   color: rgba(255,255,255,.6);
+  text-decoration: none;
 }
 
-a.title {
-  text-decoration: none;
+@media (min-width: 768px) {
+  a.title {
+    margin-top: 300px;
+  }
 }
 
 .pane.active .title, a:hover.title {
