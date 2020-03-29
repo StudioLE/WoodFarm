@@ -1,5 +1,5 @@
 {
-  "name": "WoodFarm",
+  "name": "woodfarm",
   "private": true,
   "version": "0.0.1",
   "description": "Wood Farm website built with Hugo",
@@ -7,9 +7,8 @@
   "license": "",
   "scripts": {
     "start": "npm run build",
-    "test": "echo \"No test configured...\"",
+    "test": "testcafe chrome --app \"hugo server --environment production -p 8378\"",
     "server": "hugo server",
-    "prebuild": "npm install",
     "build": "gulp build && hugo --environment production --minify",
     "deploy-dry": "hugo deploy --dryRun",
     "deploy": "hugo deploy",
@@ -17,7 +16,8 @@
   },
   "devDependencies": {
     "del": "^5.1.0",
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "testcafe": "^1.8.3"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
