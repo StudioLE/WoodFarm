@@ -2,8 +2,19 @@ baseURL: https://woodfarm.org/
 languageCode: en-gb
 title: Wood Farm, Felthorpe, Norwich
 disableKinds: ["taxonomy", "taxonomyTerm", "RSS"]
+params:
+  homeTitle: Stables · Swimming Pool · Airfield · Wood Farm, Felthorpe, Norwich
+  description: Wood Farm, Felthorpe, Norwich 
+  keywords: wood, farm, stables, swimming, pool, airfield, felthorpe, norwich
 assetDir: resources
 enableGitInfo: true
+menu:
+  main: 
+    - identifier: about
+      parent: About
+      name: Google Maps
+      url: https://www.google.co.uk/maps/place/Wood+Farm/@52.706688,1.191646,17z/data=!3m1!4b1!4m2!3m1!1s0x47d75ff65dc873d3:0x132032f4ce219144?hl=en
+      weight: 2
 deployment:
   targets:
     - name: woodfarm.org
