@@ -18,14 +18,12 @@
 
 {{/* Vendor CSS */}}
 {{- $vendorCSS := slice (resources.Get "assets/vendor/bootstrap.min.css") (resources.Get "assets/vendor/font-awesome.min.css") -}}
-{{/* App LESS */}}
-{{- $appLESS := slice (resources.Get "src/css/style.less") -}}
 {{/* App CSS */}}
-{{- $appCSS := slice (resources.Get "assets/css/app.css") -}}
+{{- $appCSS := slice (resources.Get "src/app.css") -}}
 {{/* Vendor JS */}}
 {{- $vendorJS := slice (resources.Get "assets/vendor/jquery.min.js") (resources.Get "assets/vendor/bootstrap.min.js") -}}
 {{/* App JS */}}
-{{- $appJS := slice (resources.Get "src/js/app.js") -}}
+{{- $appJS := slice (resources.Get "src/app.js") -}}
 
 
 {{/* Vendor CSS */}}
@@ -42,10 +40,9 @@
 
 {{/* App CSS / LESS */}}
 {{ if eq hugo.Environment "development" -}}
-{{ range $appLESS }}
-<link rel="stylesheet/less" href="{{ .RelPermalink }}">
+{{ range $appCSS }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
 {{- end -}}
-<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.2/less.min.js"></script>
 {{ else }}
 {{/* NOTE: LESS MUST BE COMPILED SEPARATELY */}}
 {{ $appCSS := $appCSS | resources.Concat "assets/css/app.css" }}
@@ -58,8 +55,8 @@
 </head>
 <body class="tk-minion-pro">
 
-  <div class="container-fluid full">
-    <div class="row full">
+  <div class="full">
+    <div class="row no-gutters full">
       {{ block "main" . }}
       <!-- The part of the page that begins to differ between templates -->
       {{ end }}
