@@ -33,11 +33,8 @@
           </div>
           {{ end }}
           {{ if eq .Name "About" }}
-          <div class="col-xs-12">
-            <ui-gmap-google-map center="[1.192094, 52.670772]" zoom="10">
-              <ui-gmap-marker idKey="'wood_farm'" coords='[1.190914, 52.704629]'></ui-gmap-marker>
-            </ui-gmap-google-map>
-          </div>
+            <iframe class="map"
+src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ03PIXfZf10cRRJEhzvQyIBM&zoom=10&center=52.670772%2C1.192094&key=AIzaSyCH1qupaDt92ndn9pmtHGr2vsVbN0q58Hk" allowfullscreen></iframe>
           {{ end }}
         </div>
       </div>
