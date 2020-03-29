@@ -1,3 +1,7 @@
+html, body, .full {
+  height: 100%;
+}
+
 body {
   background: #191919;
 }
@@ -49,6 +53,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  html, body, .full {
+    height: auto;
+  }
+  
   .pane {
     height: auto;
     padding: 0 0;
@@ -141,14 +149,6 @@ a.title {
     font-size: 15px;
     line-height: 15px;
   }
-}
-
-.body {
-  /* display: none; */
-}
-
-.active .body {
-  /* display: block; */
 }
 
 .body {
