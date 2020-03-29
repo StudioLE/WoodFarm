@@ -1,7 +1,27 @@
 {{ define "main" }}
       {{ $currentPage := . }}
       {{ range .Site.Menus.main }}
-      <div class="pane {{ with .Page }} {{.Section}} {{ if eq $currentPage.Section .Section }}active{{ else }}{{ if ne $currentPage.Name "Home" }} inactive{{ end }}{{ end }}{{ end }}">
+      
+      {{ $paneClasses := slice "pane" }}
+      {{ $paneClasses = $paneClasses | append .Page.Section }} 
+      
+      {{ if eq $currentPage.Name "Home" }} {{/* Home Page */}}
+          {{ $paneClasses = $paneClasses | append "col-md-3" }}
+      {{ else if eq .Page.Section "about" }} {{/* About Pane */}}
+        {{ if eq $currentPage.Section .Page.Section }}
+          {{ $paneClasses = $paneClasses | append "active" "col-md-6" }}
+        {{ else }}
+          {{ $paneClasses = $paneClasses | append "inactive" "col-md-3" }}
+        {{ end }}
+      {{ else }} {{/* Regular Pane */}}
+        {{ if eq $currentPage.Section .Page.Section }}
+          {{ $paneClasses = $paneClasses | append "active" "col-md-5" }}
+        {{ else }}
+          {{ $paneClasses = $paneClasses | append "inactive" "col-md-2" }}
+        {{ end }}
+      {{ end }}
+      
+      <div class="{{ delimit $paneClasses " " }}">
         <a class="title" href="{{ .URL }}">
           {{ if eq .Name "About" }}
           <p class="about">Find Us</p>
@@ -9,7 +29,7 @@
           <p>Stables · <span class="hidden-sm hidden-md">Swimming</span> Pool · Airfield</p>
           {{ else if eq .Name "Swimming Pool" }}
           <p>The</p>
-          <h2><span class="hidden-sm hidden-md">Swimming</span> Pool</h2>
+          <h2><span class="d-md-none d-lg-inline">Swimming</span> Pool</h2>
           <p><span class="at">at</span>Wood Farm</p>
           {{ else }}
           <p>The</p>
@@ -17,18 +37,19 @@
           <p><span class="at">at</span>Wood Farm</p>
           {{ end }}
         </a>
+        {{ if eq $currentPage.Section .Page.Section }}
+        <div class="container-fluid">
         <div class="row body">
-          <div class="col-xs-3">
-          <ul class="nav nav-stacked">
-
-            <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"><a href="{{ .URL }}">Intro</a></li>
-            {{ range .Children }}
-            <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"><a href="{{ .URL }}">{{ .Name }}</a></li>
-            {{ end }}
-          </ul>
+          <div class="col-3">
+            <nav class="nav flex-column">
+              <a class="nav-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}" href="{{ .URL }}">Intro</a>
+              {{ range .Children }}
+              <a class="nav-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+              {{ end }}
+            </ul>
           </div>
           {{ if eq $currentPage.Section .Page.Section }}
-          <div class="col-xs-8">
+          <div class="col-8">
             {{ $currentPage.Content }}
           </div>
           {{ end }}
@@ -36,7 +57,9 @@
             <iframe class="map"
 src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ03PIXfZf10cRRJEhzvQyIBM&zoom=10&center=52.670772%2C1.192094&key=AIzaSyCH1qupaDt92ndn9pmtHGr2vsVbN0q58Hk" allowfullscreen></iframe>
           {{ end }}
-        </div>
-      </div>
+        </div> <!-- .row -->
+        </div> <!-- .container -->
+        {{ end }}
+      </div> <!-- .pane -->
       {{ end }}
 {{ end }}

@@ -1,10 +1,8 @@
-const { src, dest, series } = require('gulp')
-const gp_rename = require('gulp-rename')
-const gp_clean_css = require('gulp-clean-css')
-const gp_less = require('gulp-less')
+const { src, dest, parallel } = require('gulp')
+const del = require('del')
 
 // Copy npm assets
-const assets_npm = function() {
+const vendor_js_css = function() {
   return src([
     // Vendor CSS
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
@@ -17,40 +15,20 @@ const assets_npm = function() {
   .pipe(dest('resources/assets/vendor'))
 }
 
-// Copy bootstrap less
-const assets_bootstrap = function() {
-  return src([
-    'node_modules/bootstrap/less/mixins.less',
-    'node_modules/bootstrap/less/variables.less',
-    'node_modules/bootstrap/less/variables.less',
-    ])
-  .pipe(dest('static/assets/bootstrap/less'))
-}
-
-// Copy bootstrap less mixins
-const assets_mixins = function() {
-  return src([
-    'node_modules/bootstrap/less/mixins/*'
-    ])
-  .pipe(dest('static/assets/bootstrap/less/mixins'))
-}
-
 // Copy font awesome assets
-const assets_font_awesome = function() {
+const vendor_fonts = function() {
   return src('node_modules/font-awesome/fonts/*')
   .pipe(dest('static/assets/fonts'))
 }
 
-// Build app CSS
-const css = function() {
-  return src('resources/src/css/style.less')
-  .pipe(gp_less({ paths: [
-    'static/'
-  ] }))
-  .pipe(gp_rename('app.css'))
-  .pipe(gp_clean_css())
-  .pipe(dest('resources/assets/css'))
+const clean = function() {
+  return del([
+    'resources/assets/vendor',
+    'static/assets/fonts',
+    'public'
+  ])
 }
 
-exports.build = series(assets_npm, assets_bootstrap, assets_mixins, assets_font_awesome, css)
+exports.clean = clean
+exports.build = parallel(vendor_js_css, vendor_fonts)
 exports.default = exports.build
