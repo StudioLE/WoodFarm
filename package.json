@@ -15,14 +15,14 @@
     "invalidate": "aws cloudfront create-invalidation --distribution-id E3QB1XN6DJPWAT --paths \"/*\""
   },
   "devDependencies": {
-    "del": "^5.1.0",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
-    "testcafe": "^1.8.3"
+    "testcafe": "^1.10.1"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "browser-update": "^3.3.13",
+    "bootstrap": "^4.5.3",
+    "browser-update": "^3.3.25",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.1"
   }
 }
