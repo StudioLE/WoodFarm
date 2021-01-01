@@ -6,6 +6,8 @@
 
 body {
   background: #191919;
+  font-family: 'Crimson Pro', serif;
+  font-weight: 300;
 }
 
 ::selection {
@@ -67,11 +69,14 @@ h1, h2, h3, .title {
   margin: 0;
   font-size: 36px;
   font-weight: 500;
-  letter-spacing: 1px;
   line-height: 28px;
   text-align: center;
   text-shadow: 1px 1px 1px #000;
   text-transform: uppercase;
+}
+
+p {
+  font-weight: 300;
 }
 
 a.title {
@@ -113,6 +118,7 @@ a.title {
 .title p {
   margin: 0;
   font-size: 14px;
+  letter-spacing: 2px;
   line-height: 14px;
 }
 
@@ -161,6 +167,7 @@ a.title {
 .nav>a {
   padding: 5px 0;
   color: rgba(255,255,255,.4);
+  font-weight: 500;
 }
 
 .body p {

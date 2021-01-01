@@ -50,10 +50,10 @@
 {{ $hash := slicestr $fingerprint.Data.Integrity 4 11 }}
 <link rel="stylesheet" href="{{ $appCSS.RelPermalink }}?{{ $hash }}">
 {{ end -}}
-<script src="//use.typekit.net/ohq2urr.js"></script>
-<script>try{Typekit.load();}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;500&display=swap">
 </head>
-<body class="tk-minion-pro">
+<body>
 
   <div class="full">
     <div class="row no-gutters full">
